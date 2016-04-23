@@ -1,0 +1,70 @@
+.main-view {
+  background: url('images/background.png') white repeat;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  min-height: 300px;
+}
+
+/**
+.navbar {
+  --margin-bottom: 0;
+}
+
+.navbar-default {
+  --background-color: rgba(222, 222, 222, 0.9);;
+  --box-shadow: 0 0 5px black;
+  --border: 0;
+}
+
+.nav.navbar-nav .active a {
+  --background-color: inherit;
+  --border-bottom: thick inset #6C7C3E;
+}
+
+.nav.navbar-nav .active a {
+  --background-color: inherit;
+  --border-bottom: thick inset #6C7C3E;
+}
+
+
+body {
+  --background-color: #6C7C3E;
+  --font-size: 16px;
+}
+**/
+
+footer.main-footer {
+  font-size: 80%;
+  position: static;
+  padding-top: 10px;
+  min-height: 60px;
+  color: #777;
+}
+
+footer.main-footer a {
+  color: #777;
+}
+
+.navbar-toggle {
+  padding: 0px;
+  margin: 10px 15px 4px 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.navbar-toggle .toggle-icon {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background-color: #777;
+  margin: 3px;
+  padding: 2px;
+}
+
+.navbar-brand {
+  padding: 4px 20px 8px 15px;
+}
+
+form {
+  margin: 30px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<nav class="navbar navbar-fixed-top navbar-default" ng-controller="NavbarController as navbarCtrl">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="toggle-icon"></span>
+        <span class="toggle-icon"></span>
+        <span class="toggle-icon"></span>
+        <span class="toggle-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#/myCards">
+        <img alt="Fantcard" src="images/logo.png" height="44"/>
+      </a>
+    </div> <!-- navbar-header-->
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $location.path()=='/myCards'}" ng-if="true"><a href="#/myCards">Meine Karten</a></li>
+        <li ng-class="{active: $location.path()=='/startBattle'}" ng-if="true"><a href="#/startBattle">Kampf starten</a></li>
+        <li ng-class="{active: $location.path()=='/editCards'}" ng-if="true"><a href="#/editCards">Karten pflegen</a></li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li ng-class="{active: $location.path()=='/login'}" ng-if="true"><a href="#/login">Anmelden</a></li>
+              <li ng-class="{active: $location.path()=='/signIn'}" ng-if="true"><a href="#/signIn">Registrieren</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div> <!-- navbar-collapse -->
+  </div> <!-- container-fluid -->
+</nav>

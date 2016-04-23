@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="main">
+<head>
+  <title>Fantcard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="main.css"/>
+</head>
+<body ng-controller="MainController as mainCtrl">
+
+  <div ng-include="'views/navbar/navbar.html'" class="animate"></div>
+
+  <div class="main-view">
+    <div class="container animate" ng-view></div>
+  </div>
+
+  <footer class="footer container text-center main-footer">
+    <div class="row">
+      <p>Copyright (C) 2016 FARKAS.land</p>
+      <p><a href="mailto:fantcard@farkas.land">fantcard@farkas.land</a></p>
+    </div>
+  </footer>
+
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular-route/angular-route.min.js"></script>
+  <script src="lib/angular-resource/angular-resource.min.js"></script>
+  <script src="app.min.js"></script>
+</body>
+</html>

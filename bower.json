@@ -1,0 +1,32 @@
+{
+  "name": "fantcard-frontend",
+  "description": "Frontend of the Fantasy Card Game",
+  "main": "app.js",
+  "authors": [
+    "Zsolt Farkas"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "html",
+    "js",
+    "front-end",
+    "fantasy",
+    "card",
+    "game"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.3",
+    "angular-route": "^1.5.3",
+    "bootstrap": "^3.3.6",
+    "angular-resource": "^1.5.3"
+  }
+}

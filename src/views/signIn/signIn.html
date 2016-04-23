@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <form name="signInForm">
+      <!-- Username -->
+      <div class="form-group" ng-class="{'has-error': showError(signInForm.username)}">
+        <label for="username">Benutzername<em>*</em></label>
+        <input type="text" class="form-control" name="username"
+          placeholder="maxmuster" autofocus ng-model="user.userId" required user-id-exists minlength="3">
+        <p class="help-block">Hier bitte den Benutzernamen angeben.</p>
+        <div ng-show="showError(signInForm.username)">
+          <div class="alert alert-danger">
+            <p ng-if="signInForm.username.$error.userIdExists">Der gewählte Benutzername "{{signInForm.username.$viewValue}}" existiert schon.</p>
+            <p ng-if="signInForm.username.$error.required">Benutzername muss angegeben werden.</p>
+            <p ng-if="signInForm.username.$error.minlength">Benutzername muss zumindest 3 Zeichen lang sein.</p>
+          </div>
+        </div>
+      </div>
+      <!-- First-Name -->
+      <div class="form-group" ng-class="{'has-error': showError(signInForm.firstname)}">
+        <label for="firstname">Vorname<em>*</em></label>
+        <input type="text" class="form-control" name="firstname"
+          placeholder="Max" required="true" autofocus="true" ng-model="user.firstName">
+        <p class="help-block">Hier bitte den Vornamen angeben.</p>
+      </div>
+      <!-- Last name -->
+      <div class="form-group" ng-class="{'has-error': showError(signInForm.lastname)}">
+        <label for="lastname">Nachname<em>*</em></label>
+        <input type="text" class="form-control" name="lastnanme"
+          placeholder="Muster" required="true" ng-model="user.lastName">
+        <p class="help-block">Hier bitte den Nachnamen angeben.</p>
+      </div>
+      <!-- E-Mail -->
+      <div class="form-group" ng-class="{'has-error': showError(signInForm.email)}">
+        <label for="email">E-Mail<em>*</em></label>
+        <input type="email" class="form-control" name="email"
+          placeholder="max.muster@email.de" required="true" ng-model="user.email">
+        <p class="help-block">Hier bitte die E-Mail-Adresse angeben.</p>
+      </div>
+      <!-- Password -->
+      <div class="form-group" ng-class="{'has-error': showError(signInForm.password)}">
+        <label for="password">Passwort<em>*</em></label>
+        <input type="password" class="form-control" name="password"
+          placeholder="password" required="true" ng-model="user.password" minlength="6">
+        <p class="help-block">Hier bitte das Passwort eingeben.</p>
+      </div>
+      <!-- Password again -->
+      <div class="form-group" ng-class="{'has-error': showError(signInForm.passwordAgain)}">
+        <label for="passwordAgain">Wiederholen des Passworts<em>*</em></label>
+        <input type="password" class="form-control" name="passwordAgain"
+          placeholder="password" required="true" is-same-as="signInForm.password" ng-model="user.passwordAgain">
+        <p class="help-block">Hier bitte das Passwort wiederholt eingeben.</p>
+        {{signInForm.passwordAgain.$error}}
+      </div>
+      <small>*Pflichtfeld</small>
+    </form>
+    <div class="modal-footer">
+      <!-- Submit button -->
+      <button ng-disabled="signInForm.$pending || signInForm.$invalid"
+        type="button" class="btn btn-primary" ng-click="registerUser();">Registrieren</button>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
