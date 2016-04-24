@@ -2,6 +2,12 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <form name="signInForm">
+      <!-- Allgemine Fehler -->
+      <div ng-show="serverErrors.length > 0">
+        <div class="alert alert-danger">
+          <p ng-repeat="error in serverErrors track by $index">{{error}}</p>
+        </div>
+      </div>
       <!-- Username -->
       <div class="form-group" ng-class="{'has-error': showError(signInForm.username)}">
         <label for="username">Benutzername<em>*</em></label>

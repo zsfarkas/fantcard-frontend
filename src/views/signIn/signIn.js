@@ -55,8 +55,19 @@ angular.module('signIn', [])
 .controller('SignInController', ['$scope', 'User', function($scope, User) {
   $scope.user = {};
 
+  $scope.serverErrors = [];
+
   $scope.registerUser = function() {
-    User.save($scope.user, function(err) {console.log(err);}, function(success) {console.log(success);});
+    $scope.serverErrors = [];
+    User.save($scope.user,
+      function(success) {
+        location.replace('/');
+      },
+      function(err) {
+        console.log(err);
+        $scope.serverErrors.push('Die Registation ist leider fehlgeschlagen. Versuche es noch mal.');
+      }
+    );
   };
 
   $scope.showError = function(viewModel) {
