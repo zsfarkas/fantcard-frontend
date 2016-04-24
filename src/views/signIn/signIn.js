@@ -25,27 +25,52 @@ angular.module('signIn', [])
     };
 }])
 
-.directive('samePassword', function() {
-  return {
-    restrict: 'A',
-    require: 'ngModel',
-    link: function(scope, element, attributes, ngModel) {
-      ngModel.$validators.samePassword = function(modelValue, viewValue) {
-        var value = modelValue || viewValue;
-        console.log(ngModel);
-      };
-    }
-  };
+.directive("isSameAs", function () {
+
+    return {
+        require: 'ngModel',
+        scope: {
+            isSameAs: '=isSameAs'
+                // Ausdruck von Attribut is-same-as an
+                // scope-interne Variable isSameAs binden
+        },
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$validators.isSameAs = function (viewValue, modelValue) {
+
+                var currentValue = viewValue || modelValue;
+
+                if (currentValue === scope.isSameAs.$modelValue) {
+                    //ctrl.$setValidity('isSameAs', true);
+                    return true;
+                } else {
+                    //ctrl.$setValidity('isSameAs', false);
+                    return false;
+                }
+            };
+        }
+    };
+
 })
 
 .controller('SignInController', ['$scope', 'User', function($scope, User) {
   $scope.user = {};
 
+  $scope.serverErrors = [];
+
   $scope.registerUser = function() {
-    User.save($scope.user, function(err) {console.log(err);}, function(success) {console.log(success);});
+    $scope.serverErrors = [];
+    User.save($scope.user,
+      function(success) {
+        location.replace('/');
+      },
+      function(err) {
+        console.log(err);
+        $scope.serverErrors.push('Die Registation ist leider fehlgeschlagen. Versuche es noch mal.');
+      }
+    );
   };
 
   $scope.showError = function(viewModel) {
-    return (viewModel.$dirty && viewModel.$invalid);
+    return viewModel && viewModel.$dirty && viewModel.$invalid;
   };
 }]);
