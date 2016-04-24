@@ -41,8 +41,14 @@
       <div class="form-group" ng-class="{'has-error': showError(signInForm.password)}">
         <label for="password">Passwort<em>*</em></label>
         <input type="password" class="form-control" name="password"
-          placeholder="password" required="true" ng-model="user.password" minlength="6">
+          placeholder="password" required="true" ng-change="signInForm.passwordAgain.$validate()" minlength="6" ng-model="user.password">
         <p class="help-block">Hier bitte das Passwort eingeben.</p>
+        <div ng-show="showError(signInForm.password)">
+          <div class="alert alert-danger">
+            <p ng-if="signInForm.password.$error.required">Ein Passwort muss eingegeben werden.</p>
+            <p ng-if="signInForm.password.$error.minlength">Das Passwort muss minimum 6 Zeichen lang sein.</p>
+          </div>
+        </div>
       </div>
       <!-- Password again -->
       <div class="form-group" ng-class="{'has-error': showError(signInForm.passwordAgain)}">
@@ -50,7 +56,12 @@
         <input type="password" class="form-control" name="passwordAgain"
           placeholder="password" required="true" is-same-as="signInForm.password" ng-model="user.passwordAgain">
         <p class="help-block">Hier bitte das Passwort wiederholt eingeben.</p>
-        {{signInForm.passwordAgain.$error}}
+        <div ng-show="showError(signInForm.passwordAgain)">
+          <div class="alert alert-danger">
+            <p ng-if="signInForm.passwordAgain.$error.required">Die Passwort muss wiederholt werden</p>
+            <p ng-if="signInForm.passwordAgain.$error.isSameAs">Die Wiederholung muss mit dem Passwort übereinstimmen.</p>
+          </div>
+        </div>
       </div>
       <small>*Pflichtfeld</small>
     </form>

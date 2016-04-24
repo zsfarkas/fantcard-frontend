@@ -25,17 +25,31 @@ angular.module('signIn', [])
     };
 }])
 
-.directive('samePassword', function() {
-  return {
-    restrict: 'A',
-    require: 'ngModel',
-    link: function(scope, element, attributes, ngModel) {
-      ngModel.$validators.samePassword = function(modelValue, viewValue) {
-        var value = modelValue || viewValue;
-        console.log(ngModel);
-      };
-    }
-  };
+.directive("isSameAs", function () {
+
+    return {
+        require: 'ngModel',
+        scope: {
+            isSameAs: '=isSameAs'
+                // Ausdruck von Attribut is-same-as an
+                // scope-interne Variable isSameAs binden
+        },
+        link: function (scope, elm, attrs, ctrl) {
+            ctrl.$validators.isSameAs = function (viewValue, modelValue) {
+
+                var currentValue = viewValue || modelValue;
+
+                if (currentValue === scope.isSameAs.$modelValue) {
+                    //ctrl.$setValidity('isSameAs', true);
+                    return true;
+                } else {
+                    //ctrl.$setValidity('isSameAs', false);
+                    return false;
+                }
+            };
+        }
+    };
+
 })
 
 .controller('SignInController', ['$scope', 'User', function($scope, User) {
@@ -46,6 +60,6 @@ angular.module('signIn', [])
   };
 
   $scope.showError = function(viewModel) {
-    return (viewModel.$dirty && viewModel.$invalid);
+    return viewModel && viewModel.$dirty && viewModel.$invalid;
   };
 }]);
